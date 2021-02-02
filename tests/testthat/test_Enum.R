@@ -1,10 +1,3 @@
-# library(testthat)
-
-# .testdir <- getwd()
-# setwd("../../R")
-# .srcdir <- getwd()
-# source("./enums.R")
-# setwd(.testdir)
 
 # Type checks --------------
 test_that("is", {
@@ -95,6 +88,7 @@ test_that("enum() with list/vector as argument", {
   expect_identical(is(Result, "enum"), TRUE)
 })
 
+
 # ERRORS --------------
 test_that("Wrong Enums", {
   # Wrong names
@@ -115,6 +109,10 @@ test_that("Wrong Enums", {
   expect_error(enum(a = 1, b = 2, c = 2))
   # no duplicate names
   expect_error(enum(a = 1, b = 2, b = 3))
+
+
+  # No arguments
+  expect_error(enum())
 })
 
 
@@ -173,4 +171,15 @@ test_that("strip", {
   expect_type(strip(Result), "integer")
   expect_vector(Result, integer())
   expect_null(names(Result))
+})
+
+
+
+
+# PRINT -----------------
+test_that("print", {
+  Result <- enum(a = 1, b = 2, c = 3)
+
+  expect_output(print(Result), NULL)
+  expect_output(print(Result), "^Enum.*a.*3[[:space:]]+$")
 })
