@@ -15,33 +15,47 @@
 #' inEnum(2, myEnum)   # FALSE, however ...
 #' inEnum(myEnum[2], myEnum)   # TRUE
 #' inEnum(myEnum["c"], myEnum) # TRUE
+#'
+#' enum(LETTERS[1:3])
 enum <- function(...) {
   Args <- list(...)
-  if (length(Args) == 0) stop("No arguments")
+  if (length(Args) == 0L) stop("No arguments")
 
   # Unlist vectors and lists
-  if (length(Args) == 1 && (is.list(Args) || is.atomic(Args)))
+  if (length(Args) == 1L && (is.list(Args) || is.atomic(Args)))
     Args <- unlist(Args)
 
-  # Coerce to integer
+  # 1. Extract Values
+  # try coercion to integer
   suppressWarnings(
-    Result <- as.integer(unlist(Args))
+    Values <- as.integer(unlist(Args))
   )
-  if (any(is.na(Result))) stop("Cannot create valid enum")
+
+  # ,,. if not successful, try if `Args` is a vector of names
+  if (all(is.na(Values))) {
+    if (is.character(unlist(Args))) {
+      Values <- 1L:length(Args)
+      Names  <- unlist(Args)
+    }
+  } else {
+    if (any(is.na(Values))) stop("Cannot create valid enum")
+    # if integer coercion was successful: extract names
+    Names <- names(Args)
+  }
 
   #
-  NameCount <- sum(names(Args) != "", na.rm = TRUE)
-  if (!isTRUE(NameCount == length(Result)))
+  NameCount <- sum(Names != "", na.rm = TRUE)
+  if (!isTRUE(NameCount == length(Values)))
     stop("Each element of an enum requires a name")
-  names(Result) <- names(Args)
+  names(Values) <- Names
 
-  if (length(unique(Result)) < length(Result))
+  if (length(unique(Values)) < length(Values))
     stop("Values in an enum must be unique")
-  if (length(unique(names(Result))) < length(Result))
+  if (length(unique(names(Values))) < length(Values))
     stop("Names in an enum must be unique")
 
-  class(Result) <- "enum"
-  return(Result)
+  class(Values) <- "enum"
+  return(Values)
 }
 
 

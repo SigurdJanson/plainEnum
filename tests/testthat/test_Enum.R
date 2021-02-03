@@ -5,56 +5,42 @@ test_that("is", {
 
   expect_s3_class(Result, "enum")
   expect_named(Result, letters[1:2])
-
-  # Same for partial enum? NO
-  # expect_is(Result[1], "enum")
-  # expect_s3_class(Result[2], "enum")
-  # expect_named(Result[1], letters[1])
 })
 
 
-
-test_that("is.enum", {
-  Result <- enum(a = 1, b = 2)
-  expect_true(is.enum(Result))
-
-  Result <- c(a = 1, b = 2)
-  expect_false(is.enum(Result))
-
-  # Not a valid enum because of duplicate values
-  Result <- c(a = 1, b = 1)
-  class(Result) <- "enum"
-  expect_false(is.enum(Result))
-
-  # Duplicate names: not a valid enum because
-  Result <- c(a = 1, a = 2)
-  class(Result) <- "enum"
-  expect_false(is.enum(Result))
-
-  # Missing name: not a valid enum because
-  Result <- 1:3
-  names(Result) <- letters[1:2] # names(obj) is now c("a", "b", NA)
-  class(Result) <- "enum"
-  expect_false(is.enum(Result))
-
-
-})
-
-
-
-
-# Content type coercion --------------
+# Content type --------------
 test_that("enum", {
+  #
+  Expected <- c(a = 1L, b = 2L)
+  class(Expected) <- "enum"
   Result <- enum(a = 1L, b = 2L)
   expect_identical(is(Result, "enum"), TRUE)
+  expect_identical(Result, Expected)
 
   # doubles are coerced to integer
+  Expected <- c(a = 1L, b = 2L)
+  class(Expected) <- "enum"
   Result <- enum(a = 1.0, b = 2.0)
   expect_identical(is(Result, "enum"), TRUE)
+  expect_identical(Result, Expected)
 
   # strings will be coerced to integer
+  Expected <- c(a = 1L, b = 2L, c = 3L)
+  class(Expected) <- "enum"
   Result <- enum(a = 1, b = 2, c = "3")
   expect_identical(is(Result, "enum"), TRUE)
+  expect_identical(Result, Expected)
+
+  # strings only will be used as names
+  Expected <- c(a = 1L, b = 2L, c = 3L)
+  class(Expected) <- "enum"
+  Result <- enum("a", "b", "c")
+  expect_identical(is(Result, "enum"), TRUE)
+  expect_identical(Result, Expected)
+
+  Result <- enum(letters[1:3]) # same but different
+  expect_identical(is(Result, "enum"), TRUE)
+  expect_identical(Result, Expected)
 })
 
 
@@ -129,6 +115,31 @@ test_that("is() - simply check clas attribute", {
   Result <- enum(a = 1, b = 2, c = "3")
   expect_identical(is(Result, "enum"), TRUE)
   })
+
+
+test_that("is.enum", {
+  Result <- enum(a = 1, b = 2)
+  expect_true(is.enum(Result))
+
+  Result <- c(a = 1, b = 2)
+  expect_false(is.enum(Result))
+
+  # Not a valid enum because of duplicate values
+  Result <- c(a = 1, b = 1)
+  class(Result) <- "enum"
+  expect_false(is.enum(Result))
+
+  # Duplicate names: not a valid enum because
+  Result <- c(a = 1, a = 2)
+  class(Result) <- "enum"
+  expect_false(is.enum(Result))
+
+  # Missing name: not a valid enum because
+  Result <- 1:3
+  names(Result) <- letters[1:2] # names(obj) is now c("a", "b", NA)
+  class(Result) <- "enum"
+  expect_false(is.enum(Result))
+})
 
 
 
