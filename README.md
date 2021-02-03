@@ -26,6 +26,11 @@ Days["Monday"]
 #>      1
 ```
 
+An even easier way is this one:
+```r-lang
+enum("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Samstag", "Sonntag")
+```
+
 Test if a value is part of an enumeration with `inEnum()`:
 
 ```r-lang
@@ -65,7 +70,7 @@ is.enum(bits)
 ```
 
 
-Not yet supported are enums that skip values are do not start with 1.
+Not yet supported are enumerations that skip values or do not start with 1.
 ```r-lang
 BinValue <- enum(bit1 = 1, bit2 = 2, bit4 = 4, bit8 = 8)
 BinValue[3] # should be NA but returns 4
