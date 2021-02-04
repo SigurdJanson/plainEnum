@@ -69,6 +69,25 @@ is.enum(bits)
 #> TRUE
 ```
 
+The same is unfortunately true for `for` loops. They strip the enumeration values of their names.
+```r-lang
+for (i in enum(a = 1, c = 3)) print(i)
+#> [1] 1
+#> [1] 3
+```
+
+If you need to use an enum in a loop, you can do that by using the `[[]]` selector.
+
+```r-lang
+myEnum <- enum(a = 1, c = 3)
+for (i in myEnum) print(myEnum[i])
+#> a
+#> 1
+#> c
+#> 3
+```
+
+
 
 Not yet supported are enumerations that skip values or do not start with 1.
 ```r-lang
