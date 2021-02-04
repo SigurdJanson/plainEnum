@@ -95,7 +95,7 @@ If you need to use an enum in a loop, you can do that by using the double `[[` s
 
 ```r-lang
 myEnum <- enum(a = 1, c = 3)
-for (i in myEnum) print(myEnum[i])
+for (i in myEnum) print(myEnum[[i]])
 #> a
 #> 1
 #> c
