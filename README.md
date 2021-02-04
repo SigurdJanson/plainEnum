@@ -44,6 +44,21 @@ inEnum("Thanksgiving")
 #> FALSE
 ```
 
+The best way to use an enumeration value is the `[[` operator. The single `[` selects the position of the enum in the vector. To access `c` of an enum `enum(a = 1, c = 3)` you would have to use `enum(a = 1, c = 3)[2]`. That can be rather confusing. So the selection operator for enums is the double `[[`. 
+
+```r-lang
+Vision <- enum(Clear = 1, Blurred = 99, ColorDeficient = 666)
+Vision[3]
+#> ColorDeficient
+#> 666
+Vision[[3]] 
+#> integer(0)
+Vision[[666]]
+#> ColorDeficient
+#> 666
+```
+
+
 If you want to use the enumeration in shiny widgets, you need to strip them of all attributes, first:
 ```r-lang
 shiny::updateSelectInput(inputId = "cbWeekday", choices = strip(Days))
@@ -76,7 +91,7 @@ for (i in enum(a = 1, c = 3)) print(i)
 #> [1] 3
 ```
 
-If you need to use an enum in a loop, you can do that by using the `[[]]` selector.
+If you need to use an enum in a loop, you can do that by using the double `[[` selector.
 
 ```r-lang
 myEnum <- enum(a = 1, c = 3)
