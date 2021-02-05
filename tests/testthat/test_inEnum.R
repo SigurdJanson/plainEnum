@@ -4,16 +4,31 @@ test_that("[[", {
   Result <- enum(a = 1, x = 2, c = 4)
 
   for (i in Result) {
-    print(i)
+    #print(i)
     Observed <- unclass(unname(Result[[i]]))
-    print(Observed)
+    #print(Observed)
     expect_identical(Observed, i)
     Observed <- unclass(unname(Result[names(Result[[i]])]))
-    print(Observed)
+    #print(Observed)
     expect_identical(Observed, i)
   }
 })
 
+
+
+test_that("[<-", {
+  #
+  Result <- enum(a = 1, x = 2, c = 4)
+  expect_error(Result[1] <- 2)
+})
+
+
+
+test_that("[[<-", {
+  #
+  Result <- enum(a = 1, x = 2, c = 4)
+  expect_error(Result[[1]] <- 2)
+})
 
 
 
