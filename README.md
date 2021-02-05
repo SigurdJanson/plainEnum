@@ -26,23 +26,14 @@ Days["Monday"]
 #>      1
 ```
 
-An even easier way is this one:
+An even easier way to set up an enumeration is the use of a character vector. The integer values are created automatically.
 ```r-lang
 enum("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Samstag", "Sonntag")
 ```
 
-Test if a value is part of an enumeration with `inEnum()`:
 
-```r-lang
-inEnum(7)
-#> TRUE
+Setting the value of an enumeration value I recommend using a character index for maximum readability: `val <- myEnum[["label"]]`. It is possible to use this value `val` directly. That is the **faster** way. However, the **safer** way using enums is `myEnum[[val]]` instead of just `val`. Unless performance is an issue in an app, `myEnum[[val]]` is preferable. Not only enhances it the readability of the code because it shows the type of the variable, it is also safer because it also works correctly when `val` loses it's attributes (see "Caveats").
 
-inEnum("Thursday")
-#> TRUE
-
-inEnum("Thanksgiving")
-#> FALSE
-```
 
 The best way to use an enumeration value is the `[[` operator. The single `[` selects the position of the enum in the vector. To access `c` of an enum `enum(a = 1, c = 3)` you would have to use `enum(a = 1, c = 3)[2]`. That can be rather confusing. So the selection operator for enums is the double `[[`. 
 
@@ -59,7 +50,22 @@ Vision[[666]]
 ```
 
 
-If you want to use the enumeration in shiny widgets, you need to strip them of all attributes, first:
+
+Test if a value is part of an enumeration with `inEnum()`:
+
+```r-lang
+inEnum(7)
+#> TRUE
+
+inEnum("Thursday")
+#> TRUE
+
+inEnum("Thanksgiving")
+#> FALSE
+```
+
+
+If you want to use the enumeration in [shiny widgets](https://shiny.rstudio.com/), you need to strip them of all attributes, first:
 ```r-lang
 shiny::updateSelectInput(inputId = "cbWeekday", choices = strip(Days))
 ```
@@ -117,4 +123,6 @@ Days[2]
 #>       2 
 ```
 
+## Installation
 
+TBD
