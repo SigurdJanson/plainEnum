@@ -59,6 +59,9 @@ enum <- function(...) {
 }
 
 
+
+
+
 #' @title strip
 #' @description Strip an object from all it's attributes.
 #' @param obj any object

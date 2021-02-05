@@ -7,8 +7,6 @@ An enumeration type (or enum type) is a value type defined by a set of named con
 They make it easier to write readable code: `Days["Monday"]` provides more information than `Days[1]` and is, thus, easier to understand.
 
 
-The solution is based on atomic vectors.
-
 Usage is simple. Define an enumeration with `enum()`:
 
 ```r-lang
@@ -122,6 +120,15 @@ Days[2]
 #> Tuesday 
 #>       2 
 ```
+
+## Implementation
+
+The enum solution is an S3 class based on atomic vectors. 
+
+Several assignment functions have been replaced to make it harder to change the `enum` after it has been defined. Of course there is no way to completely avoid it. R is not strongly typed, 
+and there will always be a way around it. The plainEnum package does it's best to avoid the most common mistakes.
+
+
 
 ## Installation
 
