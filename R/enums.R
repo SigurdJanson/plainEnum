@@ -76,6 +76,7 @@ strip <- function(obj) {
 }
 
 #' @describeIn strip Strip any object from all it's attributes.
+#' @export
 strip.default <- function(obj) {
   if (!is.null(attributes(obj)))
     attributes(obj) <- NULL
@@ -89,6 +90,7 @@ strip.default <- function(obj) {
 #' @param x an `enum` object to print
 #' @param ...	further arguments passed to or from other methods.
 #' @return `[invisible](x)`
+#' @export
 #' @examples
 #' print(enum(a = 1, b = 2))
 print.enum <- function(x, ...) {
