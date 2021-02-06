@@ -17,7 +17,7 @@
 \method{[[}{enum}(x, ..., exact = TRUE)
 }
 \arguments{
-\item{x}{object from which to extract element(s)}
+\item{x}{enum object from which to extract element(s)}
 
 \item{...}{An integer value or string that identifies an enum value}
 
@@ -45,6 +45,8 @@ Access an enumeration by value
 \note{
 Unlike the equivalent function in base R this function does not throw a
 warning when `exact` is `NA`.
+
+This function is not vectorized!
 }
 \examples{
 e <- enum(a = 1, x = 2, c = 4)
@@ -54,6 +56,6 @@ e[[2]]
 e[["x"]]
 #> x
 #> 2
-e[[3]] # does not exist
-#> named integer(0)
+tryCatch(e[[3]], error = function(e) e ) # does not exist
+#> Attempt to access non-existing enum value
 }

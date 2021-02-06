@@ -24,8 +24,8 @@
 #' e[["x"]]
 #' #> x
 #' #> 2
-#' e[[3]] # does not exist
-#' #> named integer(0)
+#' tryCatch(e[[3]], error = function(e) e ) # does not exist
+#' #> Attempt to access non-existing enum value
 `[[.enum` <- function(x, ..., exact = TRUE) {
   na <- nargs() - !missing(exact)
   if (na > 2L) stop("Enums are uni-dimensional and accept only one index")
