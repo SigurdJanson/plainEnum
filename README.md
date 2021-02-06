@@ -132,4 +132,9 @@ and there will always be a way around it. The plainEnum package does it's best t
 
 ## Installation
 
-TBD
+To get the current development version from github:
+
+```r-lang
+library(devtools)
+devtools::install_github("SigurdJanson/plainEnum")
+```
