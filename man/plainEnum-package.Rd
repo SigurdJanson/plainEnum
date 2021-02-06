@@ -6,7 +6,7 @@
 \alias{plainEnum-package}
 \title{plainEnum: Enumerations based on Atomic Vectors}
 \description{
-An enumeration type (or enum type) is a value type defined by a set of named constants of the underlying integral numeric type. To define an enumeration type, use the enum keyword and specify the names of enum members.
+An enumeration type (or enum type) is a value type defined by a set of named constants of the underlying integral numeric type. This package emulates/simulates that in R.
 }
 \details{
 An enumeration type (or enum type) is a value type defined by a set of named constants
@@ -22,7 +22,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Jan Seifert \email{XX@XX.com}
+\strong{Maintainer}: Jan Seifert \email{enum@sigurdjanson.anonaddy.com}
 
 }
 \keyword{internal}

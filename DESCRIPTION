@@ -1,11 +1,11 @@
 Package: plainEnum
 Type: Package
 Title: Enumerations based on Atomic Vectors
-Version: 0.1.0
-Authors@R: person("Jan", "Seifert", email = "XX@XX.com", role = c("cre","aut"))
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: An enumeration type (or enum type) is a value type defined by a set of named constants of the underlying integral numeric type. To define an enumeration type, use the enum keyword and specify the names of enum members.
-License: GPL-3
+Version: 1.0
+Authors@R: person("Jan", "Seifert", email = "enum@sigurdjanson.anonaddy.com", role = c("cre","aut"))
+Maintainer: The package maintainer <enum@sigurdjanson.anonaddy.com>
+Description: An enumeration type (or enum type) is a value type defined by a set of named constants of the underlying integral numeric type. This package emulates/simulates that in R.
+License: GPL (>= 3)
 URL: https://github.com/
 BugReports: https://github.com/.../issues
 Depends:
