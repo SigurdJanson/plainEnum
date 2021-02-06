@@ -5,7 +5,7 @@
 #' @name extract
 #' @title Extract Enum Value
 #' @description Access an enumeration by value
-#' @param x object from which to extract element(s)
+#' @param x enum object from which to extract element(s)
 #' @param ... An integer value or string that identifies an enum value
 #' @param exact Controls possible partial matching of `[[` when extracting
 #' by a character vector. The default is no partial matching. Value `FALSE` allows
@@ -38,7 +38,9 @@
   else
     nmatch <- pmatch(..1, names(x), nomatch = 0L)
 
-  return(x[sum(vmatch, nmatch)])
+  index <- sum(vmatch, nmatch)
+  if (index <= 0 || index > length(x)) stop("Attempt to access non-existing enum value")
+  return(x[index])
 }
 
 

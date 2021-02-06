@@ -15,6 +15,15 @@ test_that("[[", {
 })
 
 
+test_that("`[[` in an out of bounds situation throws an error", {
+  #
+  Result <- enum(a = 1, x = 2, c = 4)
+
+  expect_error(Result[[0]])
+  expect_error(Result[[3]])
+  expect_error(Result[[5]])
+  expect_error(Result[["b"]])
+})
 
 
 test_that("inEnum()", {
