@@ -70,7 +70,7 @@ shiny::updateSelectInput(inputId = "cbWeekday", choices = strip(Days))
 
 ## Caveats
 
-You have to avoid functions that remove attributes from its' arguments. The result in the following expression loses its attributes and is not an enum anymore.
+You have to avoid functions that remove attributes from its' arguments. The result in the following expression loses its attributes and is not an enumeration, anymore. Typical attribute removing functions are: `ifelse`, `min`/`max`, `range`. `which.min`/`which.max` are also misleading even though they seem to preserve the names but, as specified, they give you the index of the min/max value along with the right name. Similarly difficult are `pmin`/`pmax`.
 
 ```r-lang
 bits <- ifelse(rep(TRUE, 4), enum(bit1 = 1, bit2 = 2, bit4 = 4, bit8 = 8), LETTERS[1:4])
@@ -95,7 +95,7 @@ for (i in enum(a = 1, c = 3)) print(i)
 #> [1] 3
 ```
 
-If you need to use an enum in a loop, you can do that by using the double `[[` selector.
+If you need to use an enumeration in a loop, you can do that by using the double `[[` selector. 
 
 ```r-lang
 myEnum <- enum(a = 1, c = 3)
