@@ -35,13 +35,13 @@ Access an enumeration by value
 }
 \section{Functions}{
 \itemize{
-\item \code{[<-.enum}: Forbids enum value assignments
+\item \code{`[`(enum) <- value}: Forbids enum value assignments
 
-\item \code{[[<-.enum}: Forbids enum value assignments
+\item \code{`[[`(enum) <- value}: Forbids enum value assignments
 
-\item \code{names<-.enum}: Forbids enum value assignments
+\item \code{names(enum) <- value}: Forbids enum value assignments
+
 }}
-
 \note{
 Unlike the equivalent function in base R this function does not throw a
 warning when `exact` is `NA`.

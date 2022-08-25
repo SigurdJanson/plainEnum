@@ -21,9 +21,9 @@ Strip an object from all it's attributes.
 }
 \section{Methods (by class)}{
 \itemize{
-\item \code{default}: Strip any object from all it's attributes.
-}}
+\item \code{strip(default)}: Strip any object from all it's attributes.
 
+}}
 \examples{
 strip(enum(a = 1, b = 2)) # 1:2
 strip(c(a = 1, b = 2))    # 1:2

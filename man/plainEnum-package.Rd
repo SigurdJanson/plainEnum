@@ -16,8 +16,8 @@ of the underlying integral numeric type. To define an enumeration type, use
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/}
-  \item Report bugs at \url{https://github.com/.../issues}
+  \item \url{https://github.com/SigurdJanson/plainEnum}
+  \item Report bugs at \url{https://github.com/SigurdJanson/plainEnum/issues}
 }
 
 }
