@@ -1,5 +1,9 @@
 # plainEnum
 
+<!-- badges: start -->
+  [![Lifecycle: stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+<!-- badges: end -->
+
 The plainEnum package adds a simple crutch to emulate enumerations in R. 
 
 An enumeration type (or enum type) is a value type defined by a set of named constants of the underlying integral numeric type. To define an enumeration type, use the enum keyword and specify the names of enum members.
@@ -68,6 +72,7 @@ If you want to use the enumeration in [shiny widgets](https://shiny.rstudio.com/
 shiny::updateSelectInput(inputId = "cbWeekday", choices = strip(Days))
 ```
 
+
 ## Caveats
 
 You have to avoid functions that remove attributes from its' arguments. The result in the following expression loses its attributes and is not an enumeration, anymore. Typical attribute removing functions are: `ifelse`, `min`/`max`, `range`. `which.min`/`which.max` are also misleading even though they seem to preserve the names but, as specified, they give you the index of the min/max value along with the right name. Similarly difficult are `pmin`/`pmax`.
@@ -87,6 +92,9 @@ bits
 is.enum(bits)
 #> TRUE
 ```
+
+You can add the [sticky](https://github.com/decisionpatterns/sticky) package to retain attributes. But sticky does not work for all functions. E.g. `ifelse()` still removes them.
+
 
 The same is unfortunately true for `for` loops. They strip the enumeration values of their names.
 ```r-lang
@@ -120,6 +128,8 @@ Days[2]
 #> Tuesday 
 #>       2 
 ```
+
+
 
 ## Implementation
 

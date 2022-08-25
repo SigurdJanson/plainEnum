@@ -1,18 +1,18 @@
 
-test_that("[[", {
-  #
-  Result <- enum(a = 1, x = 2, c = 4)
 
-  for (i in Result) {
-    #print(i)
-    Observed <- unclass(unname(Result[[i]]))
-    #print(Observed)
-    expect_identical(Observed, i)
-    Observed <- unclass(unname(Result[names(Result[[i]])]))
-    #print(Observed)
-    expect_identical(Observed, i)
-  }
+test_that("`enum[[*]]` is still an enum with names?", {
+  #
+  e <- enum(F = 1L, y = 2L, B = 3L)
+
+  expect_identical(e[[1]], structure(c(F=1L), class="enum"))
+  expect_identical(e[[2]], structure(c(y=2L), class="enum"))
+  expect_identical(e[[3L]], structure(c(B=3L), class="enum"))
+
+  expect_identical(e[["F"]], structure(c(F=1L), class="enum"))
+  expect_identical(e[["y"]], structure(c(y=2L), class="enum"))
+  expect_identical(e[["B"]], structure(c(B=3L), class="enum"))
 })
+
 
 
 test_that("`[[` in an out of bounds situation throws an error", {

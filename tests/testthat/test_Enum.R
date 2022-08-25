@@ -1,9 +1,10 @@
 
 # Type checks --------------
-test_that("is", {
+test_that("`enum` has the right class and names attribute", {
   Result <- enum(a = 1, b = 2)
 
   expect_s3_class(Result, "enum")
+  expect_identical(attr(Result, "names"), letters[1:2])
   expect_named(Result, letters[1:2])
 })
 

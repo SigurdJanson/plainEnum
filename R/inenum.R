@@ -2,7 +2,7 @@
 
 
 
-#' @name extract
+#' @name extract-enum
 #' @title Extract Enum Value
 #' @description Access an enumeration by value
 #' @param x enum object from which to extract element(s)

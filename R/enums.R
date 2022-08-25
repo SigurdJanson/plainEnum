@@ -31,7 +31,7 @@ enum <- function(...) {
     Values <- as.integer(unlist(Args))
   )
 
-  # ,,. if not successful, try if `Args` is a vector of names
+  # ... if not successful, try if `Args` is a vector of names
   if (all(is.na(Values))) {
     if (is.character(unlist(Args))) {
       Values <- 1L:length(Args)

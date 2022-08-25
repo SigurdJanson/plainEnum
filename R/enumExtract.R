@@ -1,6 +1,6 @@
 
 
-#' @describeIn extract Access several
+#' @describeIn extract-enum Extract elements of an enum
 #' @param x An `enum` object
 #' @param ... a specification of indices.
 #' @param drop With `drop=TRUE` the result will be integer. By default subsetting

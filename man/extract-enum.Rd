@@ -5,7 +5,7 @@
 \alias{[[<-.enum}
 \alias{names<-.enum}
 \alias{[.enum}
-\alias{extract}
+\alias{extract-enum}
 \alias{[[.enum}
 \title{Extract Enum Value}
 \usage{
@@ -47,7 +47,7 @@ Access an enumeration by value
 
 \item \code{names(enum) <- value}: Forbids enum value assignments
 
-\item \code{[}: Forbids enum value assignments
+\item \code{[}: Extract elements of an enum
 
 }}
 \note{
