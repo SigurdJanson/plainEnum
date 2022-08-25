@@ -103,7 +103,7 @@ test_that("Wrong Enums", {
 
 
 #  --------------
-test_that("is() - simply check clas attribute", {
+test_that("is() - simply check class attribute", {
   Result <- enum(a = 1L, b = 2L, c = 3L)
   expect_identical(is(Result, "enum"), TRUE)
 
@@ -114,7 +114,7 @@ test_that("is() - simply check clas attribute", {
   # strings will be coerced to integer
   Result <- enum(a = 1, b = 2, c = "3")
   expect_identical(is(Result, "enum"), TRUE)
-  })
+})
 
 
 test_that("is.enum", {
