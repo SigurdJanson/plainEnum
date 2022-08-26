@@ -1,13 +1,13 @@
 
 #' @name extract-enum
 #' @title Extract Enum Value
-#' @description Access an enumeration by value
+#' @description Access an enumeration by name or value.
 #' @param x enum object from which to extract element(s)
 #' @param ... An integer value or string that identifies an enum value
 #' @param exact Controls possible partial matching of `[[` when extracting
 #' by a character vector. The default is no partial matching. Value `FALSE` allows
 #' partial matching without any warning.
-#' @return The enum value as integer
+#' @return `x[[...]]` returns the value as `enum`.
 #' @note Unlike the equivalent function in base R this function does not throw a
 #' warning when `exact` is `NA`.
 #'
@@ -45,7 +45,9 @@
 #' @param x An `enum` object
 #' @param ... a specification of indices.
 #' @param drop With `drop=TRUE` the result will be integer. By default subsetting
-#' returns `enum`.
+#' returns an `enum`.
+#' @return For `x[...]` the default return type is `enum`. Duplicate values or `drop=TRUE` will
+#' drop the return type to `integer`.
 #' @export
 `[.enum` <- function(x, ..., drop = FALSE) {
   y <- NextMethod("[")

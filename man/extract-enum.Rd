@@ -31,13 +31,16 @@ by a character vector. The default is no partial matching. Value `FALSE` allows
 partial matching without any warning.}
 
 \item{drop}{With `drop=TRUE` the result will be integer. By default subsetting
-returns `enum`.}
+returns an `enum`.}
 }
 \value{
 The enum value as integer
+
+The default return type is `enum`. Duplicate values or `drop=TRUE` will
+drop the return type to `integer`.
 }
 \description{
-Access an enumeration by value
+Access an enumeration by value or
 }
 \section{Functions}{
 \itemize{
