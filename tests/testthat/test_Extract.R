@@ -93,6 +93,16 @@ test_that("`[[` in an out of bounds situation throws an error", {
 
 
 
+test_that("`enum[[integer, exact = FALSE]]` works", {
+  #
+  e <- enum(Freebo = 1L, AlexTimmons = 2L, NurseMary = 3L, CindyLandon = 4L)
+
+  expect_identical(e[[1, exact=FALSE]], structure(c(Freebo = 1L), class="enum"))
+  expect_identical(e[[2L, exact=FALSE]], structure(c(AlexTimmons = 2L), class="enum"))
+  expect_identical(e[[4L, exact=FALSE]], structure(c(CindyLandon = 4L), class="enum"))
+})
+
+
 
 test_that("`enum[[*, exact = FALSE]]` works for unique hits", {
   #
