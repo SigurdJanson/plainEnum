@@ -54,6 +54,10 @@ Access an enumeration by name or value.
 
 }}
 \note{
+Unlike equivalent functions enumerations are not subset by index.
+Every enumeration value can be accessed by string or the according integer
+value. Subsetting *by position* is not possible for enumerations.
+
 Unlike the equivalent function in base R this function does not throw a
 warning when `exact` is `NA`.
 

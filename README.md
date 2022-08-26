@@ -37,11 +37,13 @@ enum("Montag", "Dienstag", "Mittwoch", "Donnerstag", "Samstag", "Sonntag")
 Setting the value of an enumeration value I recommend using a character index for maximum readability: `val <- myEnum[["label"]]`. It is possible to use this value `val` directly. That is the **faster** way. However, the **safer** way using enums is `myEnum[[val]]` instead of just `val`. Unless performance is an issue in an app, `myEnum[[val]]` is preferable. Not only enhances it the readability of the code because it shows the type of the variable, it is also safer because it also works correctly when `val` loses it's attributes (see "Caveats").
 
 
-The best way to use an enumeration value is the `[[` operator. The single `[` selects the position of the enum in the vector. To access `c` of an enum `enum(a = 1, c = 3)` you would have to use `enum(a = 1, c = 3)[2]`. That can be rather confusing. So the selection operator for enums is the double `[[`. 
+The best way to use an enumeration value are the `[` or `[[` operator. It is not possible to access value `c` of an enum `enum(a = 1, c = 3)` by position. The statement `enum(a = 1, c = 3)[2]` would give you an error, because a value `2` does not exist. 
+
+Examples:
 
 ```r-lang
 Vision <- enum(Clear = 1, Blurred = 99, ColorDeficient = 666)
-Vision[3]
+Vision[666]
 #> ColorDeficient
 #> 666
 Vision[[3]] 
@@ -51,6 +53,11 @@ Vision[[666]]
 #> 666
 ```
 
+The differences between `[...]` and  `[[...]]` are:
+
+* `[[...]]` supports partial matching with character access. The argument `exact = FALSE` allows it. By default, partial matching is off.
+* `[...]` supports a vectors of indices while `[[` only allows a single one.
+* `[...]` may drop the `enum` class. Either by users' choice (using the argument `drop=FALSE`) or when the subset contains duplicates.
 
 
 Test if a value is part of an enumeration with `inEnum()`:
@@ -115,19 +122,6 @@ for (i in myEnum) print(myEnum[[i]])
 ```
 
 
-
-Not yet supported are enumerations that skip values or do not start with 1.
-```r-lang
-BinValue <- enum(bit1 = 1, bit2 = 2, bit4 = 4, bit8 = 8)
-BinValue[3] # should be NA but returns 4
-```
-
-Hence, this is possible, but not recommended, yet:
-```r-lang
-Days[2]
-#> Tuesday 
-#>       2 
-```
 
 
 

@@ -13,7 +13,7 @@
 #' inEnum(3, myEnum)   # TRUE
 #' inEnum("b", myEnum) # TRUE
 #' inEnum(2, myEnum)   # FALSE, however ...
-#' inEnum(myEnum[2], myEnum)   # TRUE
+#' inEnum(myEnum[3], myEnum)   # TRUE
 #' inEnum(myEnum["c"], myEnum) # TRUE
 #'
 #' enum(LETTERS[1:3])

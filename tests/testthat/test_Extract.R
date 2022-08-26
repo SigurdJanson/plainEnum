@@ -44,6 +44,20 @@ test_that("`enum[integer(*), drop=TRUE]` is a plain integer", {
 })
 
 
+test_that("`enum[character(*)]` works", {
+  # Single element
+  e <- enum(a = 1L, b = 2L, c = 3L)
+  index <- sample(1:3, 1L)
+  chindex <- letters[index]
+  Result <- e[chindex]
+
+  # Assert
+  expected <- c(index)
+  names(expected) <- chindex
+  class(expected) <- "enum"
+  expect_identical(Result, expected)
+})
+
 
 
 test_that("`enum[...]` causing duplicates drops `enum` class and throws warning", {
@@ -73,6 +87,19 @@ test_that("`enum[NA]` causes error", {
     Result <- e[indices],
     ".*NA.*"
   )
+})
+
+
+test_that("non-consecutive enum works", {
+  #
+  e <- enum(a = 11L, b = 13L, c = 15L)
+
+  # Act
+  Result <- e[13]
+
+  # Assert
+  expect_true(is.enum(Result))
+  expect_identical(Result, structure(c(b=13L), class="enum"))
 })
 
 
