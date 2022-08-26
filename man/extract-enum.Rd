@@ -20,7 +20,7 @@
 \method{[}{enum}(x, ..., drop = FALSE)
 }
 \arguments{
-\item{x}{An `enum` object}
+\item{x}{enum object from which to extract element(s)}
 
 \item{...}{a specification of indices.}
 
@@ -34,13 +34,13 @@ partial matching without any warning.}
 returns an `enum`.}
 }
 \value{
-The enum value as integer
+`x[[...]]` returns the value as `enum`.
 
-The default return type is `enum`. Duplicate values or `drop=TRUE` will
+For `x[...]` the default return type is `enum`. Duplicate values or `drop=TRUE` will
 drop the return type to `integer`.
 }
 \description{
-Access an enumeration by value or
+Access an enumeration by name or value.
 }
 \section{Functions}{
 \itemize{
@@ -57,7 +57,7 @@ Access an enumeration by value or
 Unlike the equivalent function in base R this function does not throw a
 warning when `exact` is `NA`.
 
-This function is not vectorized!
+`x[[...]]` does not accept vector arguments.
 }
 \examples{
 e <- enum(a = 1, x = 2, c = 4)

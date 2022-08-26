@@ -11,7 +11,7 @@
 #' @note Unlike the equivalent function in base R this function does not throw a
 #' warning when `exact` is `NA`.
 #'
-#' This function is not vectorized!
+#' `x[[...]]` does not accept vector arguments.
 #' @export
 #' @examples
 #' e <- enum(a = 1, x = 2, c = 4)
@@ -29,6 +29,8 @@
   if (!all(names(sys.call()) %in% c("", "exact")))
     warning("Named arguments other than 'exact' are discouraged")
 
+  if (anyNA(..1)) stop("Enumerations do not accept NAs")
+
   vmatch <- match(..1, x, nomatch = 0L) # value matching
   if (exact) # name matching
     nmatch <- match(..1, names(x), nomatch = 0L)
@@ -42,7 +44,6 @@
 
 
 #' @describeIn extract-enum Extract elements of an enum
-#' @param x An `enum` object
 #' @param ... a specification of indices.
 #' @param drop With `drop=TRUE` the result will be integer. By default subsetting
 #' returns an `enum`.
@@ -50,6 +51,8 @@
 #' drop the return type to `integer`.
 #' @export
 `[.enum` <- function(x, ..., drop = FALSE) {
+  if (anyNA(..1)) stop("Enumerations do not accept NAs")
+
   y <- NextMethod("[")
   if (anyDuplicated(y)) {
     warning("Enumeration operation created duplicates. Result is coerced to integer.")

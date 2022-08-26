@@ -64,6 +64,19 @@ test_that("`enum[...]` causing duplicates drops `enum` class and throws warning"
 
 
 
+test_that("`enum[NA]` causes error", {
+  e <- enum(a = 1L, b = 2L, c = 3L)
+  indices <- c(sample(e, 1), NA)
+
+  # Assert
+  expect_error(
+    Result <- e[indices],
+    ".*NA.*"
+  )
+})
+
+
+
 # ENUM[[*]] =================================================
 
 test_that("`enum[[*]]` is still an enum with names?", {
@@ -140,6 +153,18 @@ test_that("`enum[[*]]` throws warning if named arguments are not 'exact'", {
   expect_warning(e[[other="NurseMary", exact=TRUE]], ".*Named argument.*")
   expect_warning(e[[other="NurseMary", exact=FALSE]], ".*Named argument.*")
 })
+
+
+test_that("`enum[[NA]]` causes error", {
+  e <- enum(a = 1L, b = 2L, c = 3L)
+
+  # Assert
+  expect_error(
+    Result <- e[[NA]],
+    ".*NA.*"
+  )
+})
+
 
 # "$ operator is invalid for atomic vectors"
 # test_that("`enum$...` is an enum", {
